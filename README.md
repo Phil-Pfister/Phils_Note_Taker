@@ -20,6 +20,12 @@
   ## Usage  
   ------------
   Navigate to the URL and click on the 'get started' button which will navigate to the notes entry page with a list of saved notes that you can add to or delete from. Type a new note in the right side display and click the  save icon.  Your new note will be displayed in the list on the left.  If you click a previous note the note information will display on the right. Click the + icon to add a new note.
+
+  URL: [www.google.com](www.google.com)
+
+  Screen shots:
+  ![ScreenShot of landing page](./images/landingPage.png)
+  ![ScreenShot of notes page](./images/NotesPage.png)
  
   ## Installation  
   -------------------
