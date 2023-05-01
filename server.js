@@ -17,26 +17,26 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 //GET route for homepage
-
-
-
 app.get('/', (req, res) => 
     res.sendFile(path.join(__dirname, '/public/index.html'))
 );
 
+//GET route to the notes endpoint
 app.get('/notes', (req, res) =>
     res.sendFile(path.join(__dirname, '/public/notes.html'))
 );
 
 
-
+// promise version of fs.readfile
 const readFromFile = util.promisify(fs.readFile);
 
+// writes new note and stringifys
 const writeToFile = (destination, content) =>
   fs.writeFile(destination, JSON.stringify(content, null, 4), (err) =>
-    err ? console.error(err) : console.info(`\nData written to ${destination}`)
+    err ? console.error(err) : console.info(`new note written and saved`)
 );
 
+// appends note to db.json
 const readAndAppend = (content, file) => {
   fs.readFile(file, 'utf8', (err, data) => {
     if (err) {
@@ -50,12 +50,13 @@ const readAndAppend = (content, file) => {
 };
 
 
-
+// GET route for retrieving existing note list as well as individual notes for display
 app.get('/api/notes', (req, res) => {
     console.info(`${req.method} request received for notes`);
     readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)))
   });
 
+  // POST route for adding new notes
 app.post('/api/notes', (req, res) => {
     console.info(`${req.method} request received to add a note`);
   
@@ -69,49 +70,27 @@ app.post('/api/notes', (req, res) => {
       };
   
       readAndAppend(newNote, './db/db.json');
-      res.json(`Note added successfully 🚀`);
+      res.json();
     } else {
       res.error('Error in adding note');
     }
   });
-
-//   const readAndDelete = (content, file) => {
-//     fs.readFile(file, 'utf8', (err, data) => {
-//         if (err) {
-//             console.log(err);
-//         } else {
-//             const allNotes = JSON.parse(data);
-//             allNotes.splice(content, 1);
-            
-//         }
-//     })
-// }
-
-//  app.delete('api/notes/:id', (req, res) => {
-//     let db = JSON.parse(fs.readFile('./db/db.json'))
-//     let deleteNotes = db.filter(i => i.id !== req.params.id);
-//     fs.writeFile('./db/db.json', JSON.stringify(deleteNotes));
-//     res.json(deleteNotes);
-//     // console.log(id);
-//     // const noteDel = noteId.findIndex(i => i.id == id);
-//     // console.log(noteDel);
-//     // readAndDelete(noteDel, './db/db.json');
-//     // return res.json(id);
-    
-//  });
-
+  
+  // delete request handler
 app.delete("/api/notes/:id", function (req, res) {
+    // loads the existing notes
+    console.info(`${req.method} request received for notes`);
     let allNotesPath = path.join(__dirname, "/db/db.json");
-    // request to delete note by id.
+    // searches for the index of the note to be deleted
     for (let i = 0; i < allNotes.length; i++) {
 
         if (allNotes[i].id == req.params.id) {
-            // Splice takes i position, and then deletes the 1 note.
+            // splices the selected entry from the array.
             allNotes.splice(i, 1);
             
         }
     }
-    // Write the db.json file again.
+    // Write the db.json file again without the selected note.
     fs.writeFileSync(allNotesPath, JSON.stringify(allNotes, null, 4), function (err) {
 
         if (err) {
@@ -120,17 +99,19 @@ app.delete("/api/notes/:id", function (req, res) {
             console.log("Your note was deleted!");
         }
     });
+    //returns new db.json file back to client
     res.json(allNotes);
 });
 
   
 
-
+// wildcard route for unused routes - sends to 'root' endpoint
 
   app.get('*', (req, res) => 
   res.sendFile(path.join(__dirname, '/public/index.html'))
 );
 
+// listener for requests from server
 app.listen(PORT, () =>
   console.log(`App listening at http://localhost:${PORT} 🚀`)
 );

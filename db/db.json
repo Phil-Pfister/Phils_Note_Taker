@@ -10,8 +10,23 @@
         "id": "ae150037-c7b4-46f2-bb05-ac17d3cf381b"
     },
     {
-        "title": "go downstairs ",
-        "text": "and drink a cup",
-        "id": "4dfff012-90ea-4bac-9320-47b6263d5804"
+        "title": "Finish project",
+        "text": "Comment out pages and make sure the file system is in proper order before deploying and submitting",
+        "id": "4411d41a-f4ce-491f-8c23-5cff0ab8f05e"
+    },
+    {
+        "title": "Walk dog",
+        "text": "Go to the park and let her off leash for a run",
+        "id": "52ce9225-c356-476f-ac6b-f5ac80b82373"
+    },
+    {
+        "title": "Drink coffee",
+        "text": "Before it gets cold",
+        "id": "00c92d41-9806-4c64-9fe4-8df92841a654"
+    },
+    {
+        "title": "Check on Mom",
+        "text": "Make sure she and dad have food",
+        "id": "804f87e2-70b4-4e58-865d-ec6a7a41ebc3"
     }
 ]
