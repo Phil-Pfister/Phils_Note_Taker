@@ -6,7 +6,6 @@ const { v4: uuidv4 } = require('uuid');
 //uuidv4();
 const app = express();
 const allNotes = require('./db/db.json'); 
-const router = express.Router();
 const PORT = 3001;
 
 
@@ -89,7 +88,7 @@ app.delete("/api/notes/:id", function (req, res) {
             allNotes.splice(i, 1);
             
         }
-    }
+    };
     // Write the db.json file again without the selected note.
     fs.writeFileSync(allNotesPath, JSON.stringify(allNotes, null, 4), function (err) {
 
