@@ -76,13 +76,14 @@ app.post('/api/notes', (req, res) => {
   
   // delete request handler
 app.delete("/api/notes/:id", function (req, res) {
-    // loads the existing notes
     
+  // reads the existing notes
     fs.readFile('./db/db.json', 'utf8', (err, data) => {
       if (err) {
         console.error(err);
       } else {
         const allNotes = JSON.parse(data);
+        // searches for the index of the note to be deleted
         for (let i = 0; i < allNotes.length; i++) {
 
           if (allNotes[i].id == req.params.id) {
@@ -91,29 +92,18 @@ app.delete("/api/notes/:id", function (req, res) {
               allNotes.splice(i, 1);
               
           }
-           // Write the db.json file again without the selected note.
-    
-          
-      }
+    }
+      // Write the db.json file again without the selected note.
       fs.writeFile('./db/db.json', JSON.stringify(allNotes, null, 4), function (err) {
 
         if (err) {
             return console.log(err);
         } else {
+          //returns new db.json file back to client
             console.log("Your note was deleted!");
             res.json(allNotes);
         }
-    });
-      }
-    });
-   
-    
-    
-    // searches for the index of the note to be deleted
-    
-   
-    //returns new db.json file back to client
-    
+    })}});
 });
 
   

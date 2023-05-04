@@ -5,13 +5,13 @@
         "id": "e0d577d2-d999-4912-b645-7d65a9e54d90"
     },
     {
-        "title": "cancel dentist appointment",
-        "text": "reschedule for the 25th",
-        "id": "f36a7557-f44a-41d8-a053-35b35ca91ea6"
-    },
-    {
         "title": "Register Charles for class",
         "text": "Deadline is Tuesday May 15th",
         "id": "72580d9f-9b5f-474d-a57f-1bdae69e7e1a"
+    },
+    {
+        "title": "Zoom with team",
+        "text": "Presentation is next Friday",
+        "id": "896a0623-f2c5-4a55-8cf4-ac88582dbdcd"
     }
 ]

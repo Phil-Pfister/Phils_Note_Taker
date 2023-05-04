@@ -21,7 +21,7 @@
   ------------
   Navigate to the URL and click on the 'get started' button which will navigate to the notes entry page with a list of saved notes that you can add to or delete from. Type a new note in the right side display and click the  save icon.  Your new note will be displayed in the list on the left.  If you click a previous note the note information will display on the right. Click the + icon to add a new note.
 
-  URL: [www.google.com](www.google.com)
+  URL: [https://phils-note-taker.herokuapp.com/](https://phils-note-taker.herokuapp.com/)
 
   Screen shots:
   ![ScreenShot of landing page](./images/landingPage.png)
@@ -33,7 +33,7 @@
 
   ## Credits 
   ------------------
-  The front end of this application was provided by the Rice Bootcamp course. I was aided in the backend by [Expressjs](https://expressjs.com/) docs and [MDN](https://developer.mozilla.org/en-US/) docs.
+  The front end of this application was provided by the Rice Bootcamp course. I was aided in the backend by [Expressjs](https://expressjs.com/) docs and [MDN](https://developer.mozilla.org/en-US/) docs. I also recieved troubleshooting assistance from David Gaither through the AskBCS learning assistant chat in Slack.
 
   ## Contact Information
   -------------------------
