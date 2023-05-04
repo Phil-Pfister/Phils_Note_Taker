@@ -89,7 +89,7 @@ app.delete("/api/notes/:id", function (req, res) {
         }
     };
     // Write the db.json file again without the selected note.
-    fs.writeFileSync(allNotesPath, JSON.stringify(allNotes, null, 4), function (err) {
+    fs.writeFile(allNotesPath, JSON.stringify(allNotes, null, 4), function (err) {
 
         if (err) {
             return console.log(err);
