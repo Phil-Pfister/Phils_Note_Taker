@@ -4,7 +4,7 @@ const fs = require('fs');
 const util = require('util');
 const { v4: uuidv4 } = require('uuid');
 const app = express();
-const allNotes = require('./db/db.json'); 
+ 
 const PORT = process.env.PORT || 3001;
 
 
@@ -77,28 +77,43 @@ app.post('/api/notes', (req, res) => {
   // delete request handler
 app.delete("/api/notes/:id", function (req, res) {
     // loads the existing notes
-    console.info(`${req.method} request received for notes`);
-    let allNotesPath = path.join(__dirname, "/db/db.json");
-    // searches for the index of the note to be deleted
-    for (let i = 0; i < allNotes.length; i++) {
+    
+    fs.readFile('./db/db.json', 'utf8', (err, data) => {
+      if (err) {
+        console.error(err);
+      } else {
+        const allNotes = JSON.parse(data);
+        for (let i = 0; i < allNotes.length; i++) {
 
-        if (allNotes[i].id == req.params.id) {
-            // splices the selected entry from the array.
-            allNotes.splice(i, 1);
+          if (allNotes[i].id == req.params.id) {
             
-        }
-    };
-    // Write the db.json file again without the selected note.
-    fs.writeFile(allNotesPath, JSON.stringify(allNotes, null, 4), function (err) {
+              // splices the selected entry from the array.
+              allNotes.splice(i, 1);
+              
+          }
+           // Write the db.json file again without the selected note.
+    
+          
+      }
+      fs.writeFile('./db/db.json', JSON.stringify(allNotes, null, 4), function (err) {
 
         if (err) {
             return console.log(err);
         } else {
             console.log("Your note was deleted!");
+            res.json(allNotes);
         }
     });
+      }
+    });
+   
+    
+    
+    // searches for the index of the note to be deleted
+    
+   
     //returns new db.json file back to client
-    res.json(allNotes);
+    
 });
 
   
