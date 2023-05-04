@@ -3,7 +3,6 @@ const path = require('path');
 const fs = require('fs');
 const util = require('util');
 const { v4: uuidv4 } = require('uuid');
-//uuidv4();
 const app = express();
 const allNotes = require('./db/db.json'); 
 const PORT = process.env.PORT || 3001;
